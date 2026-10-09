@@ -4,8 +4,6 @@ Mała baza danych firmy leasingowej: klienci, przedmioty leasingu, umowy,
 harmonogramy rat i płatności. Logika biznesowa napisana w **PL/SQL**,
 raporty w **SQL** z funkcjami okna.
 
-## Co robi
-
 - **Harmonogram rat**: na podstawie wartości przedmiotu, wpłaty własnej,
   oprocentowania i liczby rat procedura liczy ratę annuitetową i rozbija
   każdą ratę na kapitał i odsetki.
