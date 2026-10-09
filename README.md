@@ -26,21 +26,6 @@ klienci 1───* umowy *───1 przedmioty
 
 umowy ──(trigger)──> log_statusu_umowy
 ```
-
-## Elementy PL/SQL
-
-| Element | Typ | Opis |
-|---|---|---|
-| `pkg_leasing.oblicz_rate` | funkcja | rata annuitetowa `K·r / (1 − (1+r)^−n)` |
-| `pkg_leasing.saldo_umowy` | funkcja | kapitał pozostały do spłaty |
-| `pkg_leasing.generuj_harmonogram` | procedura | tworzy raty dla umowy |
-| `pkg_leasing.zarejestruj_platnosc` | procedura | księguje wpłatę, zamyka ratę i umowę |
-| `pkg_leasing.oznacz_zalegle` | procedura | zaległości i windykacja |
-| `trg_umowy_log_statusu` | wyzwalacz | historia zmian statusu |
-
-Obsługa błędów przez `RAISE_APPLICATION_ERROR` (brak umowy, istniejący
-harmonogram, błędne parametry).
-
 ## Uruchomienie
 
 Skrypty działają w Oracle Database 19c+ lub w przeglądarce w
