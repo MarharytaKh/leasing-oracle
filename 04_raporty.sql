@@ -1,8 +1,3 @@
-
--- Leasing DB — zapytania raportowe
-
-
--- 1. Portfel klientów: liczba umów, wartość finansowania, saldo do spłaty
 SELECT k.nazwa,
        COUNT(u.id_umowy)                                    AS liczba_umow,
        SUM(p.wartosc_netto - u.wplata_wlasna)               AS kwota_finansowania,
@@ -14,7 +9,7 @@ SELECT k.nazwa,
  ORDER BY saldo_do_splaty DESC;
 
 
--- 2. Zaległości: które umowy mają raty po terminie i na jaką kwotę
+-- 2. Zaległości
 SELECT k.nazwa,
        u.nr_umowy,
        u.status                                             AS status_umowy,
@@ -37,8 +32,6 @@ SELECT TRUNC(data_platnosci, 'MM')                          AS miesiac,
  GROUP BY TRUNC(data_platnosci, 'MM')
  ORDER BY miesiac;
 
-
--- 4. Struktura portfela wg kategorii przedmiotu (udział procentowy)
 SELECT p.kategoria,
        COUNT(*)                                             AS liczba_umow,
        SUM(p.wartosc_netto)                                 AS wartosc,
@@ -48,8 +41,6 @@ SELECT p.kategoria,
  GROUP BY p.kategoria
  ORDER BY wartosc DESC;
 
-
--- 5. Ranking umów wg odsetek zapłaconych dotąd przez klienta
 SELECT u.nr_umowy,
        k.nazwa,
        SUM(CASE WHEN h.status = 'OPLACONA' THEN h.odsetki ELSE 0 END) AS odsetki_zaplacone,
@@ -60,8 +51,6 @@ SELECT u.nr_umowy,
   JOIN harmonogram h ON h.id_umowy   = u.id_umowy
  GROUP BY u.nr_umowy, k.nazwa;
 
-
--- 6. Historia zmian statusu umów (z wyzwalacza)
 SELECT u.nr_umowy, l.stary_status, l.nowy_status, l.data_zmiany
   FROM log_statusu_umowy l
   JOIN umowy u ON u.id_umowy = l.id_umowy
