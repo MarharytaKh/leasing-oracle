@@ -4,15 +4,15 @@ Mała baza danych firmy leasingowej: klienci, przedmioty leasingu, umowy,
 harmonogramy rat i płatności. Logika biznesowa napisana w **PL/SQL**,
 raporty w **SQL** z funkcjami okna.
 
-- **Harmonogram rat**: na podstawie wartości przedmiotu, wpłaty własnej,
+- Harmonogram rat**: na podstawie wartości przedmiotu, wpłaty własnej,
   oprocentowania i liczby rat procedura liczy ratę annuitetową i rozbija
   każdą ratę na kapitał i odsetki.
-- **Księgowanie płatności**: wpłata zamyka ratę, a spłata ostatniej raty
+- Księgowanie płatności**: wpłata zamyka ratę, a spłata ostatniej raty
   automatycznie zamyka umowę.
-- **Kontrola zaległości**: raty po terminie oznaczane są jako zaległe,
+- Kontrola zaległości**: raty po terminie oznaczane są jako zaległe,
   a umowa z 3 lub więcej zaległymi ratami przechodzi do windykacji.
-- **Historia statusów**: wyzwalacz zapisuje każdą zmianę statusu umowy.
-- **Raporty**: portfel klientów, zaległości, wpływy miesięczne
+- Historia statusów**: wyzwalacz zapisuje każdą zmianę statusu umowy.
+- Raporty**: portfel klientów, zaległości, wpływy miesięczne
   narastająco, struktura portfela, ranking umów.
 
 ## Model danych
