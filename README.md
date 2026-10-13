@@ -12,7 +12,7 @@ raporty w **SQL** z funkcjami okna.
 - Kontrola zaległości**: raty po terminie oznaczane są jako zaległe,
   a umowa z 3 lub więcej zaległymi ratami przechodzi do windykacji.
 - Historia statusów**: wyzwalacz zapisuje każdą zmianę statusu umowy.
-- Raporty**: portfel klientów, zaległości, wpływy miesięczne
+- Raporty: portfel klientów, zaległości, wpływy miesięczne
   narastająco, struktura portfela, ranking umów.
 
 ## Model danych
