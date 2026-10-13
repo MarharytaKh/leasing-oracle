@@ -1,9 +1,3 @@
-
--- Leasing DB — dane testowe
--- Scenariusze: umowa spłacana w terminie, umowa w windykacji,
--- umowa z jedną zaległą ratą, umowa w pełni spłacona.
-
-
 INSERT INTO klienci (nazwa, nip, typ) VALUES ('TransLog Sp. z o.o.',  '5250000001', 'FIRMA');
 INSERT INTO klienci (nazwa, nip, typ) VALUES ('BudMax S.A.',          '5250000002', 'FIRMA');
 INSERT INTO klienci (nazwa, nip, typ) VALUES ('Jan Kowalski',         '5250000003', 'OSOBA');
@@ -56,7 +50,7 @@ BEGIN
 END;
 /
 
--- Przegląd zaległości na stały dzień, żeby wyniki były powtarzalne
+-- wyniki powtarzalne
 BEGIN
     pkg_leasing.oznacz_zalegle(DATE '2026-10-09');
 END;
