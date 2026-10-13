@@ -11,9 +11,11 @@ CREATE OR REPLACE PACKAGE pkg_leasing AS
 
     -- Saldo kapitału pozostałego do spłaty dla umowy
     FUNCTION saldo_umowy (p_id_umowy IN NUMBER) RETURN NUMBER;
-
     -- Tworzy harmonogram rat dla nowej umowy
     PROCEDURE generuj_harmonogram (p_id_umowy IN NUMBER);
+
+
+
 
     -- Księguje wpłatę do raty; zamyka ratę i umowę, gdy są spłacone
     PROCEDURE zarejestruj_platnosc (
@@ -35,7 +37,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_leasing AS
         p_oprocentowanie IN NUMBER,
         p_liczba_rat     IN NUMBER
     ) RETURN NUMBER IS
-        v_r NUMBER := p_oprocentowanie / 12 / 100;   -- stopa miesięczna
+        v_r NUMBER := p_oprocentowanie / 12 / 100;   -- mies.
     BEGIN
         IF p_kwota <= 0 OR p_liczba_rat <= 0 THEN
             RAISE_APPLICATION_ERROR(-20001, 'Kwota i liczba rat muszą być dodatnie');
@@ -90,7 +92,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_leasing AS
 
         FOR i IN 1 .. v_umowa.liczba_rat LOOP
             v_odsetki := ROUND(v_saldo * v_r, 2);
-            -- ostatnia rata domyka saldo (różnice z zaokrągleń)
+            -- ostatnia rata domyka saldo
             IF i = v_umowa.liczba_rat THEN
                 v_kapital := v_saldo;
             ELSE
@@ -168,7 +170,6 @@ CREATE OR REPLACE PACKAGE BODY pkg_leasing AS
 END pkg_leasing;
 /
 
--- Każda zmiana statusu umowy trafia do historii
 CREATE OR REPLACE TRIGGER trg_umowy_log_statusu
 AFTER UPDATE OF status ON umowy
 FOR EACH ROW
