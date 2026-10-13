@@ -1,6 +1,5 @@
--- Leasing DB — schemat bazy danych (Oracle)
--- Ewidencja klientów, przedmiotów leasingu, umów, harmonogramów rat
--- i płatności.
+-- Leasing DB schemat bazy danych (Oracle)
+-- Ewidencja klientów, przedmiotów leasingu, umów, harmonogramów rat i płatności.
 
 CREATE TABLE klienci (
     id_klienta       NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -9,7 +8,6 @@ CREATE TABLE klienci (
     typ              VARCHAR2(10)  NOT NULL CHECK (typ IN ('FIRMA', 'OSOBA')),
     data_rejestracji DATE DEFAULT SYSDATE NOT NULL
 );
-
 CREATE TABLE przedmioty (
     id_przedmiotu  NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     kategoria      VARCHAR2(20)  NOT NULL
@@ -50,8 +48,6 @@ CREATE TABLE platnosci (
     data_platnosci  DATE   DEFAULT SYSDATE NOT NULL,
     kwota           NUMBER(12,2) NOT NULL CHECK (kwota > 0)
 );
-
--- Historia zmian statusu umów (wypełniana przez wyzwalacz)
 CREATE TABLE log_statusu_umowy (
     id_logu      NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_umowy     NUMBER       NOT NULL,
